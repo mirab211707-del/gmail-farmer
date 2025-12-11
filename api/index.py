@@ -127,18 +127,18 @@ def home():
     <style>
         body{
             margin:0;
-            padding:0;
+            padding:20px 0;
             font-family:Poppins,sans-serif;
             background:linear-gradient(135deg,#0d0d0d,#2b0030,#000d49);
             display:flex;
             flex-direction:column;
             align-items:center;
-            min-height:100vh;
             color:white;
+            min-height:100vh;
         }
         .notice{
             text-align:center;
-            margin:20px 0 10px 0;
+            margin-bottom:30px;
             font-size:18px;
             line-height:1.5;
             background:rgba(0,0,0,0.4);
@@ -238,7 +238,6 @@ def home():
             });
         }
 
-        // Load first user when page loads
         window.onload = loadNext;
     </script>
 
