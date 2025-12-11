@@ -122,6 +122,14 @@ def home():
     <!DOCTYPE html>
     <html>
     <head>
+<div style="text-align:center; margin-bottom:15px; color:#00ffcc; font-size:16px; line-height:1.5; padding:0 10px;">
+    Gmail বিক্রি করে প্রতিটিতে <strong>১২ টাকা ইনকাম করুন!!!</strong><br>
+    মাত্র <strong>১০০ টাকায় বিকাশ/নগদ</strong> এর মাধ্যমে উত্তলন করুন।<br>
+    Withdraw পেতে যোগাযোগ করুন:<br>
+    Messenger : <span style="color:#ff99cc; cursor:pointer;" onclick="window.open('https://www.facebook.com/profile.php?id=61576962875146','_blank')">Rip Indra</span><br>
+    Whatsapp : <strong>01986459062</strong>
+</div>
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Submission Portal</title>
     <style>
@@ -136,13 +144,7 @@ def home():
     </style>
     </head>
     <body>
-    <div style="text-align:center; margin-bottom:15px; color:#00ffcc; font-size:16px; line-height:1.5; padding:0 10px;">
-    Gmail বিক্রি করে প্রতিটিতে <strong>১২ টাকা ইনকাম করুন!!!</strong><br>
-    মাত্র <strong>১০০ টাকায় বিকাশ/নগদ</strong> এর মাধ্যমে উত্তলন করুন।<br>
-    Withdraw পেতে যোগাযোগ করুন:<br>
-    Messenger : <span style="color:#ff99cc; cursor:pointer;" onclick="window.open('https://www.facebook.com/profile.php?id=61576962875146','_blank')">Rip Indra</span><br>
-    Whatsapp : <strong>01986459062</strong>
-</div>
+
     <div class="card">
         <div class="title">User Submission</div>
         <div class="info"><strong>First Name:</strong> <span id="fname"></span></div>
