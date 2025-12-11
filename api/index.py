@@ -127,20 +127,18 @@ def home():
     <style>
         body{
             margin:0;
-            padding:20px 0;
+            padding:0;
             font-family:Poppins,sans-serif;
             background:linear-gradient(135deg,#0d0d0d,#2b0030,#000d49);
-            color:white;
-        }
-        .container{
             display:flex;
             flex-direction:column;
             align-items:center;
-            width:100%;
+            min-height:100vh;
+            color:white;
         }
         .notice{
             text-align:center;
-            margin-bottom:30px;
+            margin:20px 0 10px 0;
             font-size:18px;
             line-height:1.5;
             background:rgba(0,0,0,0.4);
@@ -165,33 +163,28 @@ def home():
         button{width:100%;margin-top:18px;padding:14px;font-size:18px;background:#ff0077;border:none;border-radius:12px;cursor:pointer;transition:0.3s;}
         button:hover{background:#ff3399;}
         #msg{text-align:center;margin-top:10px;font-weight:bold;color:#00ffcc;}
-        a{color:#00ffcc;}
     </style>
     </head>
     <body>
 
-    <div class="container">
+    <div class="notice">
+        Gmail বিক্রি করে প্রতিটিতে ১২ টাকা ইনকাম করুন!!!<br>
+        মাত্র ১০০ টাকায় বিকাশ/নগদ এর মাধ্যমে উত্তলন করুন।<br>
+        Withdraw পেতে যোগাযোগ করুন<br>
+        Messenger : Rip Indra (<a href="https://www.facebook.com/profile.php?id=61576962875146" style="color:#00ffcc;" target="_blank">link</a>)<br>
+        Whatsapp : 01986459062
+    </div>
 
-        <div class="notice">
-            Gmail বিক্রি করে প্রতিটিতে ১২ টাকা ইনকাম করুন!!!<br>
-            মাত্র ১০০ টাকায় বিকাশ/নগদ এর মাধ্যমে উত্তলন করুন।<br>
-            Withdraw পেতে যোগাযোগ করুন<br>
-            Messenger : Rip Indra (<a href="https://www.facebook.com/profile.php?id=61576962875146" target="_blank">link</a>)<br>
-            Whatsapp : 01986459062
-        </div>
-
-        <div class="card">
-            <div class="title">User Submission</div>
-            <div class="info"><strong>First Name:</strong> <span id="fname">-</span></div>
-            <div class="info"><strong>Last Name:</strong> <span id="lname">-</span></div>
-            <div class="info"><strong>Email:</strong> <span id="email">-</span></div>
-            <div class="info"><strong>Password:</strong> <span id="password">-</span></div>
-            <label>Messenger ID Name:</label>
-            <input type="text" id="messenger" placeholder="Enter Messenger ID" required>
-            <button onclick="submitUser()">Submit</button>
-            <div id="msg"></div>
-        </div>
-
+    <div class="card">
+        <div class="title">User Submission</div>
+        <div class="info"><strong>First Name:</strong> <span id="fname">-</span></div>
+        <div class="info"><strong>Last Name:</strong> <span id="lname">-</span></div>
+        <div class="info"><strong>Email:</strong> <span id="email">-</span></div>
+        <div class="info"><strong>Password:</strong> <span id="password">-</span></div>
+        <label>Messenger ID Name:</label>
+        <input type="text" id="messenger" placeholder="Enter Messenger ID" required>
+        <button onclick="submitUser()">Submit</button>
+        <div id="msg"></div>
     </div>
 
     <script>
@@ -245,6 +238,7 @@ def home():
             });
         }
 
+        // Load first user when page loads
         window.onload = loadNext;
     </script>
 
