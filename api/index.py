@@ -125,8 +125,39 @@ def home():
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Submission Portal</title>
     <style>
-        body{margin:0;padding:0;font-family:Poppins,sans-serif;background:linear-gradient(135deg,#0d0d0d,#2b0030,#000d49);display:flex;justify-content:center;align-items:center;height:100vh;}
-        .card{width:95%;max-width:450px;background:rgba(255,255,255,0.12);padding:25px;border-radius:20px;box-shadow:0 10px 35px rgba(0,0,0,0.6);backdrop-filter:blur(12px);color:white;transition:0.3s;}
+        body{
+            margin:0;
+            padding:0;
+            font-family:Poppins,sans-serif;
+            background:linear-gradient(135deg,#0d0d0d,#2b0030,#000d49);
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            align-items:center;
+            min-height:100vh;
+            color:white;
+        }
+        .notice{
+            text-align:center;
+            margin-bottom:20px;
+            font-size:18px;
+            line-height:1.5;
+            background:rgba(0,0,0,0.4);
+            padding:15px 25px;
+            border-radius:15px;
+            max-width:450px;
+        }
+        .card{
+            width:95%;
+            max-width:450px;
+            background:rgba(255,255,255,0.12);
+            padding:25px;
+            border-radius:20px;
+            box-shadow:0 10px 35px rgba(0,0,0,0.6);
+            backdrop-filter:blur(12px);
+            color:white;
+            transition:0.3s;
+        }
         .title{text-align:center;font-size:26px;margin-bottom:15px;}
         .info{margin-bottom:12px;font-size:18px;}
         input{width:100%;padding:12px;border-radius:10px;border:none;margin-top:5px;font-size:16px;}
@@ -136,6 +167,14 @@ def home():
     </style>
     </head>
     <body>
+
+    <div class="notice">
+        Gmail বিক্রি করে প্রতিটিতে ১২ টাকা ইনকাম করুন!!!<br>
+        মাত্র ১০০ টাকায় বিকাশ/নগদ এর মাধ্যমে উত্তলন করুন।<br>
+        Withdraw পেতে যোগাযোগ করুন<br>
+        Messenger : Rip Indra (<a href="https://www.facebook.com/profile.php?id=61576962875146" style="color:#00ffcc;" target="_blank">link</a>)<br>
+        Whatsapp : 01986459062
+    </div>
 
     <div class="card">
         <div class="title">User Submission</div>
@@ -203,5 +242,4 @@ def home():
     </html>
     """
     return html
-
 # Note: NO app.run() here — ready for Vercel
