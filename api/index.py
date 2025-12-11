@@ -125,27 +125,73 @@ def home():
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Submission Portal</title>
     <style>
-        body{margin:0;padding:0;font-family:Poppins,sans-serif;background:linear-gradient(135deg,#0d0d0d,#2b0030,#000d49);display:flex;justify-content:center;align-items:center;height:100vh;}
-        .card{width:95%;max-width:450px;background:rgba(255,255,255,0.12);padding:25px;border-radius:20px;box-shadow:0 10px 35px rgba(0,0,0,0.6);backdrop-filter:blur(12px);color:white;transition:0.3s;}
+        body{
+            margin:0;
+            padding:20px 0;
+            font-family:Poppins,sans-serif;
+            background:linear-gradient(135deg,#0d0d0d,#2b0030,#000d49);
+            color:white;
+        }
+        .container{
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            width:100%;
+        }
+        .notice{
+            text-align:center;
+            margin-bottom:30px;
+            font-size:18px;
+            line-height:1.5;
+            background:rgba(0,0,0,0.4);
+            padding:15px 25px;
+            border-radius:15px;
+            max-width:450px;
+        }
+        .card{
+            width:95%;
+            max-width:450px;
+            background:rgba(255,255,255,0.12);
+            padding:25px;
+            border-radius:20px;
+            box-shadow:0 10px 35px rgba(0,0,0,0.6);
+            backdrop-filter:blur(12px);
+            color:white;
+            transition:0.3s;
+        }
         .title{text-align:center;font-size:26px;margin-bottom:15px;}
         .info{margin-bottom:12px;font-size:18px;}
         input{width:100%;padding:12px;border-radius:10px;border:none;margin-top:5px;font-size:16px;}
         button{width:100%;margin-top:18px;padding:14px;font-size:18px;background:#ff0077;border:none;border-radius:12px;cursor:pointer;transition:0.3s;}
         button:hover{background:#ff3399;}
         #msg{text-align:center;margin-top:10px;font-weight:bold;color:#00ffcc;}
+        a{color:#00ffcc;}
     </style>
     </head>
     <body>
-    <div class="card">
-        <div class="title">User Submission</div>
-        <div class="info"><strong>First Name:</strong> <span id="fname"></span></div>
-        <div class="info"><strong>Last Name:</strong> <span id="lname"></span></div>
-        <div class="info"><strong>Email:</strong> <span id="email"></span></div>
-        <div class="info"><strong>Password:</strong> <span id="password"></span></div>
-        <label>Messenger ID Name:</label>
-        <input type="text" id="messenger" placeholder="Enter Messenger ID" required>
-        <button onclick="submitUser()">Submit</button>
-        <div id="msg"></div>
+
+    <div class="container">
+
+        <div class="notice">
+            Gmail বিক্রি করে প্রতিটিতে ১২ টাকা ইনকাম করুন!!!<br>
+            মাত্র ১০০ টাকায় বিকাশ/নগদ এর মাধ্যমে উত্তলন করুন।<br>
+            Withdraw পেতে যোগাযোগ করুন<br>
+            Messenger : Rip Indra (<a href="https://www.facebook.com/profile.php?id=61576962875146" target="_blank">link</a>)<br>
+            Whatsapp : 01986459062
+        </div>
+
+        <div class="card">
+            <div class="title">User Submission</div>
+            <div class="info"><strong>First Name:</strong> <span id="fname">-</span></div>
+            <div class="info"><strong>Last Name:</strong> <span id="lname">-</span></div>
+            <div class="info"><strong>Email:</strong> <span id="email">-</span></div>
+            <div class="info"><strong>Password:</strong> <span id="password">-</span></div>
+            <label>Messenger ID Name:</label>
+            <input type="text" id="messenger" placeholder="Enter Messenger ID" required>
+            <button onclick="submitUser()">Submit</button>
+            <div id="msg"></div>
+        </div>
+
     </div>
 
     <script>
@@ -153,8 +199,8 @@ def home():
 
         function loadNext(){
             fetch('/next_user')
-            .then(res=>res.json())
-            .then(data=>{
+            .then(res => res.json())
+            .then(data => {
                 if(!data.exists){
                     document.getElementById('fname').innerText = '-';
                     document.getElementById('lname').innerText = '-';
@@ -179,28 +225,31 @@ def home():
         function submitUser(){
             if(!currentUser) return;
             let messenger = document.getElementById('messenger').value.trim();
-            if(messenger===''){ alert('Messenger ID required'); return; }
-            fetch('/submit_messenger',{
+            if(messenger===''){ 
+                alert('Messenger ID required'); 
+                return; 
+            }
+            fetch('/submit_messenger', {
                 method:'POST',
                 headers:{'Content-Type':'application/json'},
                 body: JSON.stringify({id: currentUser.id, messenger: messenger})
             })
-            .then(res=>res.json())
-            .then(data=>{
+            .then(res => res.json())
+            .then(data => {
                 if(data.ok){
                     document.getElementById('msg').innerText = 'Submitted Successfully ✅';
-                    setTimeout(loadNext,800);
+                    setTimeout(loadNext, 800);
                 } else {
-                    document.getElementById('msg').innerText = 'Error: '+data.error;
+                    document.getElementById('msg').innerText = 'Error: ' + data.error;
                 }
             });
         }
 
-        loadNext();
+        window.onload = loadNext;
     </script>
+
     </body>
     </html>
     """
     return html
-
 # Note: NO app.run() here — ready for Vercel
