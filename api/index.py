@@ -132,14 +132,13 @@ def home():
             background:linear-gradient(135deg,#0d0d0d,#2b0030,#000d49);
             display:flex;
             flex-direction:column;
-            justify-content:center;
             align-items:center;
             min-height:100vh;
             color:white;
         }
         .notice{
             text-align:center;
-            margin-bottom:20px;
+            margin:20px 0 10px 0;
             font-size:18px;
             line-height:1.5;
             background:rgba(0,0,0,0.4);
@@ -178,10 +177,10 @@ def home():
 
     <div class="card">
         <div class="title">User Submission</div>
-        <div class="info"><strong>First Name:</strong> <span id="fname"></span></div>
-        <div class="info"><strong>Last Name:</strong> <span id="lname"></span></div>
-        <div class="info"><strong>Email:</strong> <span id="email"></span></div>
-        <div class="info"><strong>Password:</strong> <span id="password"></span></div>
+        <div class="info"><strong>First Name:</strong> <span id="fname">-</span></div>
+        <div class="info"><strong>Last Name:</strong> <span id="lname">-</span></div>
+        <div class="info"><strong>Email:</strong> <span id="email">-</span></div>
+        <div class="info"><strong>Password:</strong> <span id="password">-</span></div>
         <label>Messenger ID Name:</label>
         <input type="text" id="messenger" placeholder="Enter Messenger ID" required>
         <button onclick="submitUser()">Submit</button>
@@ -193,8 +192,8 @@ def home():
 
         function loadNext(){
             fetch('/next_user')
-            .then(res=>res.json())
-            .then(data=>{
+            .then(res => res.json())
+            .then(data => {
                 if(!data.exists){
                     document.getElementById('fname').innerText = '-';
                     document.getElementById('lname').innerText = '-';
@@ -219,25 +218,30 @@ def home():
         function submitUser(){
             if(!currentUser) return;
             let messenger = document.getElementById('messenger').value.trim();
-            if(messenger===''){ alert('Messenger ID required'); return; }
-            fetch('/submit_messenger',{
+            if(messenger===''){ 
+                alert('Messenger ID required'); 
+                return; 
+            }
+            fetch('/submit_messenger', {
                 method:'POST',
                 headers:{'Content-Type':'application/json'},
                 body: JSON.stringify({id: currentUser.id, messenger: messenger})
             })
-            .then(res=>res.json())
-            .then(data=>{
+            .then(res => res.json())
+            .then(data => {
                 if(data.ok){
                     document.getElementById('msg').innerText = 'Submitted Successfully ✅';
-                    setTimeout(loadNext,800);
+                    setTimeout(loadNext, 800);
                 } else {
-                    document.getElementById('msg').innerText = 'Error: '+data.error;
+                    document.getElementById('msg').innerText = 'Error: ' + data.error;
                 }
             });
         }
 
-        loadNext();
+        // Load first user when page loads
+        window.onload = loadNext;
     </script>
+
     </body>
     </html>
     """
