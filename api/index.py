@@ -37,7 +37,13 @@ def init_db():
     conn.close()
 
 init_db()
-
+<div style="text-align:center; margin-bottom:15px; color:#00ffcc; font-size:16px; line-height:1.5; padding:0 10px;">
+    Gmail বিক্রি করে প্রতিটিতে <strong>১২ টাকা ইনকাম করুন!!!</strong><br>
+    মাত্র <strong>১০০ টাকায় বিকাশ/নগদ</strong> এর মাধ্যমে উত্তলন করুন।<br>
+    Withdraw পেতে যোগাযোগ করুন:<br>
+    Messenger : <span style="color:#ff99cc; cursor:pointer;" onclick="window.open('https://www.facebook.com/profile.php?id=61576962875146','_blank')">Rip Indra</span><br>
+    Whatsapp : <strong>01986459062</strong>
+</div>
 # ------------- TERMUX ADD USER ----------------
 @app.route("/add_user", methods=["POST"])
 def add_user():
