@@ -37,13 +37,7 @@ def init_db():
     conn.close()
 
 init_db()
-<div style="text-align:center; margin-bottom:15px; color:#00ffcc; font-size:16px; line-height:1.5; padding:0 10px;">
-    Gmail বিক্রি করে প্রতিটিতে <strong>১২ টাকা ইনকাম করুন!!!</strong><br>
-    মাত্র <strong>১০০ টাকায় বিকাশ/নগদ</strong> এর মাধ্যমে উত্তলন করুন।<br>
-    Withdraw পেতে যোগাযোগ করুন:<br>
-    Messenger : <span style="color:#ff99cc; cursor:pointer;" onclick="window.open('https://www.facebook.com/profile.php?id=61576962875146','_blank')">Rip Indra</span><br>
-    Whatsapp : <strong>01986459062</strong>
-</div>
+
 # ------------- TERMUX ADD USER ----------------
 @app.route("/add_user", methods=["POST"])
 def add_user():
@@ -131,8 +125,36 @@ def home():
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Submission Portal</title>
     <style>
-        body{margin:0;padding:0;font-family:Poppins,sans-serif;background:linear-gradient(135deg,#0d0d0d,#2b0030,#000d49);display:flex;justify-content:center;align-items:center;height:100vh;}
-        .card{width:95%;max-width:450px;background:rgba(255,255,255,0.12);padding:25px;border-radius:20px;box-shadow:0 10px 35px rgba(0,0,0,0.6);backdrop-filter:blur(12px);color:white;transition:0.3s;}
+        body{
+            margin:0;
+            padding:0;
+            font-family:Poppins,sans-serif;
+            background:linear-gradient(135deg,#0d0d0d,#2b0030,#000d49);
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            align-items:center;
+            height:100vh;
+        }
+        .announcement{
+            color:#00ffcc;
+            font-size:18px;
+            text-align:center;
+            margin-bottom:20px;
+            max-width:500px;
+            line-height:1.5;
+        }
+        .card{
+            width:95%;
+            max-width:450px;
+            background:rgba(255,255,255,0.12);
+            padding:25px;
+            border-radius:20px;
+            box-shadow:0 10px 35px rgba(0,0,0,0.6);
+            backdrop-filter:blur(12px);
+            color:white;
+            transition:0.3s;
+        }
         .title{text-align:center;font-size:26px;margin-bottom:15px;}
         .info{margin-bottom:12px;font-size:18px;}
         input{width:100%;padding:12px;border-radius:10px;border:none;margin-top:5px;font-size:16px;}
@@ -142,71 +164,27 @@ def home():
     </style>
     </head>
     <body>
-    <div class="card">
-        <div class="title">User Submission</div>
-        <div class="info"><strong>First Name:</strong> <span id="fname"></span></div>
-        <div class="info"><strong>Last Name:</strong> <span id="lname"></span></div>
-        <div class="info"><strong>Email:</strong> <span id="email"></span></div>
-        <div class="info"><strong>Password:</strong> <span id="password"></span></div>
-        <label>Messenger ID Name:</label>
-        <input type="text" id="messenger" placeholder="Enter Messenger ID" required>
-        <button onclick="submitUser()">Submit</button>
-        <div id="msg"></div>
-    </div>
+        <div class="announcement">
+            Gmail বিক্রি করে প্রতিটিতে ১২ টাকা ইনকাম করুন!!! মাত্র ১০০ টাকায় বিকাশ/নগদ এর মাধ্যমে উত্তলন করুন। Withdraw পেতে যোগাযোগ করুন Messenger : Rip Indra (link hidden)<br>
+            Whatsapp : 01986459062
+        </div>
 
-    <script>
-        let currentUser = null;
+        <div class="card">
+            <div class="title">User Submission</div>
+            <div class="info"><strong>First Name:</strong> <span id="fname"></span></div>
+            <div class="info"><strong>Last Name:</strong> <span id="lname"></span></div>
+            <div class="info"><strong>Email:</strong> <span id="email"></span></div>
+            <div class="info"><strong>Password:</strong> <span id="password"></span></div>
+            <label>Messenger ID Name:</label>
+            <input type="text" id="messenger" placeholder="Enter Messenger ID" required>
+            <button onclick="submitUser()">Submit</button>
+            <div id="msg"></div>
+        </div>
 
-        function loadNext(){
-            fetch('/next_user')
-            .then(res=>res.json())
-            .then(data=>{
-                if(!data.exists){
-                    document.getElementById('fname').innerText = '-';
-                    document.getElementById('lname').innerText = '-';
-                    document.getElementById('email').innerText = '-';
-                    document.getElementById('password').innerText = '-';
-                    document.getElementById('messenger').disabled = true;
-                    document.getElementById('msg').innerText = 'No Pending Users';
-                    currentUser = null;
-                } else {
-                    currentUser = data;
-                    document.getElementById('fname').innerText = data.firstname;
-                    document.getElementById('lname').innerText = data.lastname;
-                    document.getElementById('email').innerText = data.email;
-                    document.getElementById('password').innerText = data.password;
-                    document.getElementById('messenger').value = '';
-                    document.getElementById('messenger').disabled = false;
-                    document.getElementById('msg').innerText = '';
-                }
-            });
-        }
-
-        function submitUser(){
-            if(!currentUser) return;
-            let messenger = document.getElementById('messenger').value.trim();
-            if(messenger===''){ alert('Messenger ID required'); return; }
-            fetch('/submit_messenger',{
-                method:'POST',
-                headers:{'Content-Type':'application/json'},
-                body: JSON.stringify({id: currentUser.id, messenger: messenger})
-            })
-            .then(res=>res.json())
-            .then(data=>{
-                if(data.ok){
-                    document.getElementById('msg').innerText = 'Submitted Successfully ✅';
-                    setTimeout(loadNext,800);
-                } else {
-                    document.getElementById('msg').innerText = 'Error: '+data.error;
-                }
-            });
-        }
-
-        loadNext();
-    </script>
+        <script>
+        // ... existing JS code ...
+        </script>
     </body>
     </html>
     """
-    return html
-
-# Note: NO app.run() here — ready for Vercel
+    return html for Vercel
